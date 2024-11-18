@@ -40,6 +40,18 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
     Secuencia = as.character(flouresce_fasta),
     Longitud = width(flouresce_fasta)
     
+  ),
+  data.frame(
+    Organismo = "S. lividians",
+    ID = names(livi_fasta),
+    Secuencia = as.character (livi_fasta),
+    Longitud = width (livi_fasta)
+  ),
+  data.frame(
+    Organismo = "L. lactis",
+    ID = names(lactis_fasta),
+    Secuencia = as.character(lactis_fasta),
+    Longitud = width (lactis_fasta)
   )
 )
 
