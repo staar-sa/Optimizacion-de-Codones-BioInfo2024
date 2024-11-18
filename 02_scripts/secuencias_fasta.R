@@ -6,19 +6,20 @@
 library(Biostrings)
 
 ecoli <- "01_raw_data/e.coli.fna"
-ecoli_fasta <- readAAStringSet(ecoli)
+ecoli_fasta <- readDNAStringSet(ecoli)
 
 bsubtilis <- "01_raw_data/b. subtilis.fna"
-bsubtilis_fasta <- readAAStringSet (bsubtilis)
+bsubtilis_fasta <- readDNAStringSet (bsubtilis)
 
 pflour <- "01_raw_data/p. fluorescens.fna"
-flouresce_fasta <- readAAStringSet (pflour)
+flouresce_fasta <- readDNAStringSet (pflour)
 
 lividians <- "01_raw_data/s. lividians.fna"
-livi_fasta <- readAAStringSet (lividians)
+livi_fasta <- readDNAStringSet (lividians)
 
 putida <- "01_raw_data/p. putida.fna"
-putida_fasta <- readAAStringSet (putida)
+putida_fasta <- readDNAStringSet (putida)
+
 # Crear un data frame con las secuencias
 secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se como hacerlo o no me acuerdo jejej 
   data.frame(
