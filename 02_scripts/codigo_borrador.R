@@ -1,3 +1,5 @@
+## Data frame para asignar el aminoacido a los codones 
+
 codones_aminoacidos <- data.frame(
   Codon = c(
     # Alanina
