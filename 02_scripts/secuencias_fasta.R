@@ -76,7 +76,7 @@ codones <- substring( secuencia_en_caracteres,
   return(codones)
 }
 
-dividir_en_codones(ecoli_fasta) <- codones_e.coli
-
+dividir_en_codones(ecoli_fasta) -> codones_e.coli
+codones_e.coli
 
 
