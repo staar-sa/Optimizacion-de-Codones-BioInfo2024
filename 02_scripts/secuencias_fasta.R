@@ -11,15 +11,14 @@ ecoli_fasta <- readAAStringSet(ecoli)
 bsubtilis <- "01_raw_data/b. subtilis.fna"
 bsubtilis_fasta <- readAAStringSet (bsubtilis)
 
-pflour <- "01_raw_data/b. subtilis.fna"
+pflour <- "01_raw_data/p. fluorescens.fna"
 flouresce_fasta <- readAAStringSet (pflour)
-
-lactis <- "01_raw_data/l. lactis.fna"
-lactis_fasta <- readAAStringSet (lactis)
 
 lividians <- "01_raw_data/s. lividians.fna"
 livi_fasta <- readAAStringSet (lividians)
 
+putida <- "01_raw_data/p. putida.fna"
+putida_fasta <- readAAStringSet (putida)
 # Crear un data frame con las secuencias
 secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se como hacerlo o no me acuerdo jejej 
   data.frame(
@@ -48,10 +47,10 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
     Longitud = width (livi_fasta)
   ),
   data.frame(
-    Organismo = "L. lactis",
-    ID = names(lactis_fasta),
-    Secuencia = as.character(lactis_fasta),
-    Longitud = width (lactis_fasta)
+    Organismo = "P. putida",
+    ID = names(putida_fasta),
+    Secuencia = as.character(putida_fasta),
+    Longitud = width (putida_fasta)
   )
 )
 
