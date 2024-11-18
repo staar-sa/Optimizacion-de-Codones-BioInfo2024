@@ -55,6 +55,28 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
   )
 )
 
+# Función para dividir una secuencia en codones
+dividir_en_codones <- function(secuencia) {
+# Convertir DNAString a caracteres
+  secuencia_en_caracteres <- as.character(secuencia)
+  
+# Obtener la longitud de la secuencia
+  len <- nchar( secuencia_en_caracteres)
+  
+# Verificar si la longitud es múltiplo de 3
+if (len %% 3 != 0) {
+secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, len - (len %% 3))
+}
+  
+# Dividir en codones
+codones <- substring( secuencia_en_caracteres, 
+                       seq(1, nchar( secuencia_en_caracteres)-2, by=3),
+                       seq(3, nchar( secuencia_en_caracteres), by=3))
+  
+  return(codones)
+}
+
+dividir_en_codones(ecoli_fasta) <- codones_e.coli
 
 
 
