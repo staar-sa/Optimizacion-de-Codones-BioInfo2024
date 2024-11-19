@@ -93,46 +93,46 @@ for (codon in codones_e.coli) {
   }
 }
 
-############################################################################33
+############################################################################
 
-# Convertir el vector de frecuencias a dataframe
-df_frecuencia_codones <- data.frame(
-  Codon = names(frecuencia_codones),
-  frecuencia_codones = as.numeric(frecuencia_codones)
-)
+### esto es lo que hizo estrella
 
+#volver las frecuencias a un dataframe 
+df_frecuencia_codones <- as.data.frame(frecuencia_codones)
+df_frecuencia_codones
 
-# Combinar con la tabla de aminoácidos
-df_codones_aa <- merge(codones_aminoacidos, df_frecuencia_codones, by = "Codon")
+#combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
+df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
+df_codones_aa
 
-# Crear un dataframe vacío para almacenar los resultados
+####### solo añadi esto 
+
+# Crear dataframe vacío para los resultados
 codones_mas_frecuentes <- data.frame()
 
-# Obtener lista única de aminoácidos
-aminoacidos_unicos <- unique(df_codones_aa$Aminoacido)
+# Obtener los aminoácidos únicos
+aminoacidos <- unique(df_codones_aa$Aminoacido)
 
-# Para cada aminoácido, encontrar el codón más frecuente
-for(aa in aminoacidos_unicos) {
-  # Filtrar solo las filas del aminoácido actual
-  datos_aa <- df_codones_aa[df_codones_aa$Aminoacido == aa, ]
-  
-  # Encontrar la fila con la frecuencia más alta
-  fila_max <- datos_aa[which.max(datos_aa$frecuencia_codones), ]
-  
-  # Añadir esta fila al dataframe de resultados
-  codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
+# Encontrar el codón más frecuente para cada aminoácido
+for(amino in aminoacidos) {
+    # Seleccionar las filas de ese aminoácido
+    filas_aa <- df_codones_aa[df_codones_aa$Aminoacido == amino, ]
+    # Seleccionar la fila con el valor más alto
+    fila_max <- filas_aa[which.max(filas_aa$frecuencia_codones), ]
+    # Añadir al dataframe final
+    codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
 }
 
-print(codones_mas_frecuentes)
- 
- 
+codones_mas_frecuentes
+
  ###########################################################################
  
  
  #volver las frecuencias a un dataframe 
  df_frecuencia_codones <- as.data.frame(frecuencia_codones)
  df_frecuencia_codones
-#combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
+
+ #combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
  df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
  df_codones_aa
 
@@ -166,6 +166,4 @@ print(codones_mas_frecuentes)
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
  df_codones_aa_plot
  
- library(plotly)
- aa_plot_interactivo <- ggplotly(df_codones_aa_plot)
-aa_plot_interactivo 
+ 
