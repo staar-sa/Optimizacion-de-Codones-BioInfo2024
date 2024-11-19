@@ -83,11 +83,8 @@ codones_e.coli
 
 # Crear un vector de tamaño igual al número de codones, inicializado en 0
 frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
-
 # Asignar nombres a cada posición del vector, basados en los codones del data frame
 names(frecuencia_codones) <- codones_aminoacidos$Codon
-
-frecuencia_codones
 
 for (codon in codones_e.coli) {
   indice <- which(codones_aminoacidos$Codon == codon)
@@ -95,8 +92,41 @@ for (codon in codones_e.coli) {
     frecuencia_codones[codon] <- frecuencia_codones[codon] + 1
   }
 }
- frecuencia_codones
+
+############################################################################33
+
+# Convertir el vector de frecuencias a dataframe
+df_frecuencia_codones <- data.frame(
+  Codon = names(frecuencia_codones),
+  frecuencia_codones = as.numeric(frecuencia_codones)
+)
+
+
+# Combinar con la tabla de aminoácidos
+df_codones_aa <- merge(codones_aminoacidos, df_frecuencia_codones, by = "Codon")
+
+# Crear un dataframe vacío para almacenar los resultados
+codones_mas_frecuentes <- data.frame()
+
+# Obtener lista única de aminoácidos
+aminoacidos_unicos <- unique(df_codones_aa$Aminoacido)
+
+# Para cada aminoácido, encontrar el codón más frecuente
+for(aa in aminoacidos_unicos) {
+  # Filtrar solo las filas del aminoácido actual
+  datos_aa <- df_codones_aa[df_codones_aa$Aminoacido == aa, ]
+  
+  # Encontrar la fila con la frecuencia más alta
+  fila_max <- datos_aa[which.max(datos_aa$frecuencia_codones), ]
+  
+  # Añadir esta fila al dataframe de resultados
+  codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
+}
+
+print(codones_mas_frecuentes)
  
+ 
+ ###########################################################################
  
  
  #volver las frecuencias a un dataframe 
