@@ -64,7 +64,7 @@ secuencia_en_caracteres <- as.character(secuencia)
 numero_caracteres <- nchar( secuencia_en_caracteres)
   
 # Verificar si la longitud es múltiplo de 3
-if (len %% 3 != 0) {
+if (numero_caracteres %% 3 != 0) {
 secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres 
                                    - (numero_caracteres %% 3))
 }
