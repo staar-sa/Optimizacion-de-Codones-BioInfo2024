@@ -58,6 +58,7 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
 
 ##############################################################################
 
+##Definir una función, para que esta reciba una secuencia de ADN como entrada
 preferencia_de_codones <- function(secuencia) {
 
 # Dividir una secuencia en codones
