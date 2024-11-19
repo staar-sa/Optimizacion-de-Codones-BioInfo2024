@@ -81,3 +81,19 @@ dividir_en_codones(ecoli_fasta) -> codones_e.coli
 codones_e.coli
 
 
+# Crear un vector de tamaño igual al número de codones, inicializado en 0
+frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
+
+# Asignar nombres a cada posición del vector, basados en los codones del data frame
+names(frecuencia_codones) <- codones_aminoacidos$Codon
+
+frecuencia_codones
+
+for (codon in codones_e.coli) {
+  indice <- which(codones_aminoacidos$Codon == codon)
+  if (length(indice) > 0) { # Asegurarse de que hay un índice válido
+    frecuencia_codones[codon] <- frecuencia_codones[codon] + 1
+  }
+}
+ frecuencia_codones
+ 
