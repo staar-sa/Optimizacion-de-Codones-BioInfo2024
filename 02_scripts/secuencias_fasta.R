@@ -267,11 +267,10 @@ library(ggplot2)
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
  df_codones_aa_plot
  
- list(
+ print(list(
    codones_mas_frecuentes = codones_mas_frecuentes,
-   grafico = df_codones_aa_plot
+   grafico = df_codones_aa_plot)
  )
  }
 
-preferencia_de_codones(bsubtilis_fasta) -> resultado
-resultado
+preferencia_de_codones(bsubtilis_fasta)
