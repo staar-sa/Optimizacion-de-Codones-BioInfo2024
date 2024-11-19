@@ -136,3 +136,6 @@ for (codon in codones_e.coli) {
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
  df_codones_aa_plot
  
+ library(plotly)
+ aa_plot_interactivo <- ggplotly(df_codones_aa_plot)
+aa_plot_interactivo 
