@@ -97,3 +97,42 @@ for (codon in codones_e.coli) {
 }
  frecuencia_codones
  
+ 
+ 
+ #volver las frecuencias a un dataframe 
+ df_frecuencia_codones <- as.data.frame(frecuencia_codones)
+ df_frecuencia_codones
+#combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
+ df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
+ df_codones_aa
+
+ #Cargar la siguiente libreria para los resultados
+ library(ggplot2)
+ #Si solo queremos un aminoacido hay que seleccionarlo: Alanina
+ ala_data <- df_codones_aa[df_codones_aa$Aminoacido == "Ala", ]
+ #Gráfico de barras solo de la comparacion de alanina
+ ala_plot <- ggplot(ala_data, aes(x = Codon, y = frecuencia_codones, fill = Aminoacido)) +
+   geom_bar(stat="identity") +
+   theme_minimal() +
+   labs(
+     title = "Frecuencia de Codones de Alanina en E. coli",
+     x = "Codón",
+     y = "Frecuencia",
+     fill = "Aminoácido"
+   ) + 
+   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+ ala_plot
+ 
+ #Grafica de todos los aminoacidos
+ df_codones_aa_plot <- ggplot(df_codones_aa, aes(x = Codon, y = frecuencia_codones, fill = Aminoacido)) +
+   geom_bar(stat = "identity") +
+   theme_minimal() +
+   labs(
+     title = "Frecuencia de Codones en E. coli",
+     x = "Codón",
+     y = "Frecuencia",
+     fill = "Aminoácido"
+   ) + 
+   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+ df_codones_aa_plot
+ 
