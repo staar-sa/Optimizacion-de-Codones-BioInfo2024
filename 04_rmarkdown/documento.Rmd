@@ -15,7 +15,7 @@ Una estrategia clave en la **ingeniería genética** muy usada en la actulidad e
 
 ## En este proyecto final, evaluamos las frecuencias de codones en una secuencia de ADN de *Escherichia coli*
 
-
+![](images/e.cooki.jpg){width="390"}
 
 ## Slide with R Output
 
