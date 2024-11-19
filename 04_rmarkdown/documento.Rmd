@@ -1,5 +1,5 @@
 ---
-title: "Optimizacion de Codones"
+title: "Optimización de Codones"
 author: "Melissa Martinez, Estrella Segobia, Daniela Villanueva"
 date: "`r Sys.Date()`"
 output: ioslides_presentation
@@ -17,10 +17,13 @@ Una estrategia clave en la **ingeniería genética** muy usada en la actulidad e
 
 ![](images/e.cooki.jpg){width="390"}
 
-## Slide with R Output
+## Primer paso 
+Este paso es *fundamental* para correr un código correctamente, *SIEMPRE* tenemos que cargar las librerías (Hey se ve feo alguien me puede ayudar a q se vea bonito)
 
-```{r cars, echo = TRUE}
-summary(cars)
+
+```{r}
+library(Biostrings)
+library(ggplot2)
 ```
 
 ## Slide with Plot
