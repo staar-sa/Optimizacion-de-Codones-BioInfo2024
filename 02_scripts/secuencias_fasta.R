@@ -268,6 +268,10 @@ library(ggplot2)
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
  df_codones_aa_plot
  
+ library (plotly)
+ df_codones_aa_plot_interactivo <- ggplotly (df_codones_aa_plot)
+ print (df_codones_aa_plot_interactivo)
+ 
  print(list(
    codones_mas_frecuentes = codones_mas_frecuentes,
    grafico = df_codones_aa_plot)
