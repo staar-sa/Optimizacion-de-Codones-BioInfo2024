@@ -1,0 +1,28 @@
+---
+title: "Ingenieria Genetica"
+author: "Melissa Martinez, Estrella Segobia, Daniela Villanueva"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Optimización de Codones para Proteínas Recombinantes
+
+Una estrategia clave en la **ingeniería genética** muy usada en la actualidad es buscar maximizar la expresión eficiente de proteínas recombinantes en sistemas heterólogos, como lo son: **bacterias**, levaduras, o células eucariotas. Este proceso consiste en ajustar la secuencia de ADN que codifica una proteína para que utilice codones preferidos por el organismo anfitrión, sin alterar la secuencia de aminoácidos de la proteína final.
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
