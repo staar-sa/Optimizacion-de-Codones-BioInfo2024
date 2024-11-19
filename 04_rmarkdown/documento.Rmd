@@ -13,11 +13,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Una estrategia clave en la **ingeniería genética** muy usada en la actulidad es buscar maximizar la expresión eficiente de proteínas recombinantes en sistemas heterólogos, como lo son: **bacterias**, levaduras, o células eucariotas. Este proceso consiste en ajustar la secuencia de ADN que codifica una proteína para que utilice codones preferidos por el organismo anfitrión, sin alterar la secuencia de aminoácidos de la proteína final.
 
-## Slide with Bullets
+## En este proyecto final, evaluamos las frecuencias de codones en una secuencia de ADN de *Escherichia coli*
 
--   Bullet 1
--   Bullet 2
--   Bullet 3
+
 
 ## Slide with R Output
 
