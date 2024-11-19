@@ -132,3 +132,6 @@ codones_aminoacidos <- data.frame(
   )
 )  
 
+codones_aminoacidos
+ print (codones_aminoacidos)
+ 
