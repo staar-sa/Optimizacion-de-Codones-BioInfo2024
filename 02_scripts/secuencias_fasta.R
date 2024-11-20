@@ -1,8 +1,15 @@
 ##0 - LIBRERIAS REQUERIDAS##
-#en caso de no tenerlas, es necesario instalarlas previamente antes de cargaras
-install.packages("Biostrings")
+#en caso de no tenerlas, es necesario instalarlas previamente antes de cargarlas
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("Biostrings")
+
 install.packages("ggplot2")
+
 install.packages("plotly")
+
 #si ya las tienes, solo hay que cargarlas previamente
 library(Biostrings)
 library(ggplot2)
@@ -10,10 +17,18 @@ library(plotly)
 
 
 
-##1 - DESCARGAR SECUENCIAS USADAS COMO REFERENCIA##
+##1 - DESCARGAR SECUENCIAS, ESTAS SERAN USADAS COMO REFERENCIA##
+
+# 1.1 Asignar a un objeto la secuencia fasta 
 ecoli <- "01_raw_data/e.coli.fna"
+
+# 1.2 Leer la secuencia con la función readDNAStringSet que vive en Biostrings 
+# y asignar a un objeto
+
 ecoli_fasta <- readDNAStringSet(ecoli)
 
+
+# Repetir los pasos 1.1 y 1.2 con las secuencias que se deseen analizar
 bsubtilis <- "01_raw_data/b. subtilis.fna"
 bsubtilis_fasta <- readDNAStringSet (bsubtilis)
 
