@@ -58,6 +58,8 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
 
 ##############################################################################
 
+# Función que determina la preferencia de codones de 
+
 preferencia_de_codones <- function(secuencia) {
 
 # Dividir una secuencia en codones
@@ -273,4 +275,4 @@ library(ggplot2)
  )
  }
 
-preferencia_de_codones(bsubtilis_fasta)
+preferencia_de_codones(putida_fasta)
