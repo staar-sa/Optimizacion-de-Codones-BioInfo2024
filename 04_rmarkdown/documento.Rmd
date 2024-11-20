@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-# Análisis de Secuencias y Preferencias de Codones
+Analisis de secuencias y preferencias de codones
 
 #### Librerías Requeridas
 
@@ -41,7 +41,7 @@ print(ecoli_fasta)
 
 #### Paso 2 - Crear función para determinar la presencia de codones
 
-```{r message=TRUE, paged.print=TRUE}
+```{r}
 preferencia_de_codones <- function(secuencia) {
   
 #2.1 Dividir una secuencia en codones
@@ -164,10 +164,10 @@ for (codon in codones) { #Que tome cada codón del vector codones uno por uno
 }
   # Convertir las frecuencias obtenidas a un data frame 
 df_frecuencia_codones <- as.data.frame(frecuencia_codones)
-print (df_frecuencia_codones)
+
   # Combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
 df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
-print (df_codones_aa)
+
 
  #2.5 Para visualizar los aminoacidos mas frecuentes
   # Crear dataframe vacío para los resultados
@@ -183,7 +183,7 @@ for(amino in aminoacidos) {
   # Añadir al dataframe final
     codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
 }
-print(codones_mas_frecuentes)
+
 
  #2.6 Graficar los resultados
  df_codones_aa_plot <- ggplot(df_codones_aa, aes(x = Codon, y = frecuencia_codones, fill = Aminoacido)) +
@@ -196,7 +196,7 @@ print(codones_mas_frecuentes)
      fill = "Aminoácido"
    ) + 
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
- print (df_codones_aa_plot)
+ 
   # Como extra, si queremos que la grafica sea interactiva
  df_codones_aa_plot_interactivo <- ggplotly (df_codones_aa_plot)
  print (df_codones_aa_plot_interactivo)
@@ -207,15 +207,16 @@ print(codones_mas_frecuentes)
    grafico = df_codones_aa_plot)
  )
    # Guardar los codones más frecuentes como un archivo CSV
- write.csv(codones_mas_frecuentes, "codones_mas_frecuentes.csv", row.names = FALSE)
+ write.csv(codones_mas_frecuentes, "03_resultados/codones_mas_frecuentes.csv", row.names = FALSE)
    # Guardar la tabla completa de codones y frecuencias como CSV
- write.csv(df_codones_aa, "frecuencia_codones.csv", row.names = FALSE)
+ write.csv(df_codones_aa, "03_resultados/frecuencia_codones.csv", row.names = FALSE)
    # Guardar la gráfica como imagen PNG
- ggsave("grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
- }
+ ggsave("03_resultados/grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
+}
+
 ```
 
-#### Paso 3 - Usar la misma función para las secuencias de interes
+#### Paso 3 - podemos usar la misma funcion para las siguientes secuencias
 
 ```{r}
 preferencia_de_codones(ecoli_fasta)
