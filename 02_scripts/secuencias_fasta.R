@@ -1,6 +1,6 @@
-##0 - LIBRERIAS REQUERIDAS##
+#0 - LIBRERIAS REQUERIDAS##
 
-# En caso de no tenerlas, es necesario instalarlas previamente antes de cargarlas
+ #En caso de no tenerlas, es necesario instalarlas previamente antes de cargarlas
 
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -11,7 +11,7 @@ install.packages("ggplot2")
 
 install.packages("plotly")
 
-# Si ya las tienes, solo hay que cargarlas previamente
+#Si ya las tienes, solo hay que cargarlas previamente
 
 library(Biostrings)
 library(ggplot2)
@@ -278,16 +278,16 @@ print(codones_mas_frecuentes)
  #E.coli
 preferencia_de_codones(ecoli_fasta)
 resultados <- preferencia_de_codones(ecoli_fasta)
- #
-preferencia_de_codones(livid)
-resultados <- preferencia_de_codones(ecoli_fasta)
- #
-preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
- #
-preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
- #
-preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
+ #Bacillus subtilis
+preferencia_de_codones(bsubtilis_fasta)
+resultados <- preferencia_de_codones(bsubtilis_fasta)
+ #Pseudomonas fluorscens
+preferencia_de_codones(flouresce_fasta)
+resultados <- preferencia_de_codones(flouresce_fasta)
+ # Streptomyces lividans
+preferencia_de_codones(livi_fasta)
+resultados <- preferencia_de_codones(livi_fasta)
+ #Pseudomonas putida
+preferencia_de_codones(putida_fasta)
+resultados <- preferencia_de_codones(putida_fasta)
 
