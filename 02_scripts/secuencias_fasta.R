@@ -1,9 +1,17 @@
 ##0 - LIBRERIAS REQUERIDAS##
-#en caso de no tenerlas, es necesario instalarlas previamente antes de cargaras
-install.packages("Biostrings")
+# En caso de no tenerlas, es necesario instalarlas previamente para poder cargarlas
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("Biostrings")
+
 install.packages("ggplot2")
+
 install.packages("plotly")
-#si ya las tienes, solo hay que cargarlas previamente
+
+# Cargar las librerías
+
 library(Biostrings)
 library(ggplot2)
 library(plotly)
@@ -11,8 +19,13 @@ library(plotly)
 
 
 ##1 - DESCARGAR SECUENCIAS USADAS COMO REFERENCIA##
-ecoli <- "01_raw_data/e.coli.fna"
+# 1.1 Asignar a un objeto la secuencia en formato fasta previamente descargada.
+ecoli <- "01_raw_data/e.coli.fna" 
+
+# 1.2 Leer la secuencia con la función readDNAStringSet presente en Biostrings
 ecoli_fasta <- readDNAStringSet(ecoli)
+
+# Repetir estos pasos con las secuencias que deseemos analizar
 
 bsubtilis <- "01_raw_data/b. subtilis.fna"
 bsubtilis_fasta <- readDNAStringSet (bsubtilis)
@@ -25,9 +38,10 @@ livi_fasta <- readDNAStringSet (lividians)
 
 putida <- "01_raw_data/p. putida.fna"
 putida_fasta <- readDNAStringSet (putida)
-#Si queremos observalas:
 
-#Podemos visualizarlas individualmente solo imprimiendolas
+# Si queremos observalas:
+# Podemos visualizarlas individualmente solo imprimiendolas
+
 print(ecoli_fasta)
 print(bsubtilis_fasta)
 print(flouresce_fasta)
@@ -71,16 +85,9 @@ print(secuencias_df)
 
 
 
-##2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES
+# 2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES
 
-
-##############################################################################
-
-
-# Función que determina la preferencia de codones de 
-
-
-##Definir una función, para que esta reciba una secuencia de ADN como entrada
+# Definir una función, para que esta reciba una secuencia de ADN como entrada
 
 preferencia_de_codones <- function(secuencia) {
 
@@ -308,16 +315,16 @@ library(ggplot2)
  )
  
  # Guardar los codones más frecuentes como un archivo CSV
- write.csv(codones_mas_frecuentes, "codones_mas_frecuentes.csv", row.names = FALSE)
+ write.csv(codones_mas_frecuentes, "resultados_funcion/codones_mas_frecuentes.csv", row.names = FALSE)
  
  # Guardar la tabla completa de codones y frecuencias como CSV
- write.csv(df_codones_aa, "frecuencia_codones.csv", row.names = FALSE)
+ write.csv(df_codones_aa, "resultados_funcion/frecuencia_codones.csv", row.names = FALSE)
  
  # Guardar la gráfica como imagen PNG
- ggsave("grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
+ ggsave("resultados_funcion/grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
  
  
  }
 
 preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
+
