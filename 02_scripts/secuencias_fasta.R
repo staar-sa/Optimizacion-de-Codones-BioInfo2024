@@ -48,7 +48,8 @@ print(flouresce_fasta)
 print(livi_fasta)
 print(putida_fasta)
 
-#Aunque preferimos hacer un dataframe
+# Aunque preferimos hacer un dataframe para organizar las sucuencias a usar en el proyecto
+
 secuencias_df <- rbind(    
   data.frame(
     Organismo = "E. coli",
@@ -85,18 +86,22 @@ print(secuencias_df)
 
 
 
-# 2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES
+##2 - FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES##
 
-# Definir una función, para que esta reciba una secuencia de ADN como entrada
+# Definir una función, para que esta reciba una secuencia de ADN como entrada,
+# es decir la secuencia que ya leímos previamente con readDNAstringset y asignamos
+# al objeto.
 
 preferencia_de_codones <- function(secuencia) {
 
-# Dividir una secuencia en codones
-# Convertir DNAString a caracteres
+## 2.1 DIVIDIR LA SECUENCIA EN CODONES ##
+  
+# Convertir DNAString a caracteres, para poder contarlos 
   
 secuencia_en_caracteres <- as.character(secuencia)
   
-# Obtener la longitud de la secuencia
+# Obtener la longitud de la secuencia con la función nchar (número de caracteres)
+
 numero_caracteres <- nchar( secuencia_en_caracteres)
   
 # Verificar si la longitud es múltiplo de 3
