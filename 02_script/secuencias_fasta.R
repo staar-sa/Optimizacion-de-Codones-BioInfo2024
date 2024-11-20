@@ -238,6 +238,8 @@ for(amino in aminoacidos) {
 
 
  #2.6 Graficar los resultados
+library(ggplot2)
+
  df_codones_aa_plot <- ggplot(df_codones_aa, aes(x = Codon, y = frecuencia_codones, fill = Aminoacido)) +
    geom_bar(stat = "identity") +
    theme_minimal() +
