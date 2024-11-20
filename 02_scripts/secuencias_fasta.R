@@ -117,6 +117,11 @@ secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres
 codones <- substring( secuencia_en_caracteres, 
                        seq(1, nchar( secuencia_en_caracteres)-2, by=3),
                        seq(3, nchar( secuencia_en_caracteres), by=3))
+
+
+
+
+
   
 #2.2 Creamos un dataframe sobre los codones que le corresponden a cada aminoacido
 codones_aminoacidos <- data.frame(
@@ -209,10 +214,21 @@ codones_aminoacidos <- data.frame(
     "Stop", "Stop", "Stop"
   ))  
 
+
+
+
+
+
+
  #2.3 Crear un vector de tamaño igual al número de codones, inicializado en 0
 frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
   #Asignar nombres a cada posición del vector, basados en los codones del data frame
 names(frecuencia_codones) <- codones_aminoacidos$Codon
+
+
+
+
+
 
  #2.4 Generar un ciclo for que recorre todos los codones generados anteriormente y calcular cuantas veces a parece cada uno 
 for (codon in codones) { #Que tome cada codón del vector codones uno por uno 
@@ -227,6 +243,12 @@ print (df_frecuencia_codones)
   #Combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
 df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
 print (df_codones_aa)
+
+
+
+
+
+
 
  #2.5 Para visualizar los aminoacidos mas frecuentes
   #Crear dataframe vacío para los resultados
@@ -244,6 +266,11 @@ for(amino in aminoacidos) {
 }
 print(codones_mas_frecuentes)
 
+
+
+
+}
+
  #2.6 Graficar los resultados
  df_codones_aa_plot <- ggplot(df_codones_aa, aes(x = Codon, y = frecuencia_codones, fill = Aminoacido)) +
    geom_bar(stat = "identity") +
@@ -259,6 +286,11 @@ print(codones_mas_frecuentes)
   #Como extra, si queremos que la grafica sea interactiva
  df_codones_aa_plot_interactivo <- ggplotly (df_codones_aa_plot)
  print (df_codones_aa_plot_interactivo)
+ 
+ 
+ 
+ 
+ 
 
   #2.7 Creamos una lista donde tengamos tanto la grafica como los codones mas frecuentes
  print(list(
@@ -278,17 +310,17 @@ print(codones_mas_frecuentes)
 ##PODEMOS USAR EL MISMO CODIGO PARA LAS DEMAS SECUENCIAS, POR EJEMPLO:
  #E.coli
 preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
+
  #
 preferencia_de_codones(livid)
-resultados <- preferencia_de_codones(ecoli_fasta)
+
  #
 preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
+
  #
 preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
+
  #
 preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
+
 
