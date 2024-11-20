@@ -101,14 +101,15 @@ preferencia_de_codones <- function(secuencia) {
 
 #2.1 Dividir una secuencia en codones
   
-  # Convertir DNAString a caracteres
+  # Convertir DNAString a caracteres para poder contar y cortar la secuencia
 secuencia_en_caracteres <- as.character(secuencia)
 
-  # Obtener la longitud de la secuencia
+  # Obtener la longitud de la secuencia con la función nchar (número de caracteres)
 numero_caracteres <- nchar( secuencia_en_caracteres)
 
-  #Verificar si la longitud es múltiplo de 3
+  #Verificar si la longitud es múltiplo de 3 obteniendo el residuo de la división
 if (numero_caracteres %% 3 != 0) {
+
 secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres
                                    - (numero_caracteres %% 3))
 }
