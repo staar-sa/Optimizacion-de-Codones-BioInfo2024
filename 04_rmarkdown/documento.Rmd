@@ -1,68 +1,28 @@
 ---
-title: "Optimización de Codones"
+title: "Ingenieria Genetica"
 author: "Melissa Martinez, Estrella Segobia, Daniela Villanueva"
 date: "`r Sys.Date()`"
-output: ioslides_presentation
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Optimización de Codones para Proteínas Recombinantes
 
-Una estrategia clave en la **ingeniería genética** muy usada en la actulidad es buscar maximizar la expresión eficiente de proteínas recombinantes en sistemas heterólogos, como lo son: **bacterias**, levaduras, o células eucariotas. Este proceso consiste en ajustar la secuencia de ADN que codifica una proteína para que utilice codones preferidos por el organismo anfitrión, sin alterar la secuencia de aminoácidos de la proteína final.\
+Una estrategia clave en la **ingeniería genética** muy usada en la actualidad es buscar maximizar la expresión eficiente de proteínas recombinantes en sistemas heterólogos, como lo son: **bacterias**, levaduras, o células eucariotas. Este proceso consiste en ajustar la secuencia de ADN que codifica una proteína para que utilice codones preferidos por el organismo anfitrión, sin alterar la secuencia de aminoácidos de la proteína final.
 
-En este proyecto final, se evaluaron las frecuencias de codones en cinco secuencias de ADN provenientes de diferentes especies bacterianas de interés. Las especies seleccionadas incluyen *Escherichia coli, Bacillus subtilis, Pseudomonas fluorescens, Pseudomonas putida y Streptomyces lividians*
-
-### Paso cero
-
-Este paso es **fundamental** para correr un código correctamente: Cargar las librerías antes de comenzar a trabajar, en este caso usaremos:
-
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-library(Biostrings)
-library(ggplot2)
-library(plotly)
+```{r cars}
+summary(cars)
 ```
 
-### Primer paso
+## Including Plots
 
-Descargar las secuencias que serán analizadas en formato **FASTA**, y asignar dicha secuencia a un objeto:
+You can also embed plots, for example:
 
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-ecoli <- "01_raw_data/e.coli.fna"
+```{r pressure, echo=FALSE}
+plot(pressure)
 ```
 
-Leer la secuencia con la función readDNAStringSet que vive en Biostrings y asignarla a un objeto:
-
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-ecoli_fasta <- readDNAStringSet(ecoli)
-```
-
-Para visualizar la secuencia completa tenemos que imprimirla:
-
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-print(ecoli_fasta)
-```
-
-En este trabajo se decidió trabajar con 5 secuencias, pertenecientes a las bacterias más utilizadas en el campo de la producción de proteínas recombinantes, por lo tanto, es necesario repetir los pasos anteriores con todas las secuencias que se desean analizar:
-
-```{r message=FALSE, warning=FALSE, paged.print=FALSE}
-bsubtilis <- "01_raw_data/b. subtilis.fna"
-bsubtilis_fasta <- readDNAStringSet (bsubtilis)
-
-pflour <- "01_raw_data/p. fluorescens.fna"
-flouresce_fasta <- readDNAStringSet (pflour)
-
-lividians <- "01_raw_data/s. lividians.fna"
-livi_fasta <- readDNAStringSet (lividians)
-
-putida <- "01_raw_data/p. putida.fna"
-putida_fasta <- readDNAStringSet (putida)
-
-print(bsubtilis_fasta)
-print(flouresce_fasta)
-print(livi_fasta)
-print(putida_fasta)
-
-```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

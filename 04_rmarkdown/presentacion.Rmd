@@ -1,13 +1,12 @@
 ---
-title: "Ingenieria Genetica"
+title: "Optimización de Codones"
 author: "Melissa Martinez, Estrella Segobia, Daniela Villanueva"
 date: "`r Sys.Date()`"
-output: html_document
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 ```
 
 ## Optimización de Codones para Proteínas Recombinantes
