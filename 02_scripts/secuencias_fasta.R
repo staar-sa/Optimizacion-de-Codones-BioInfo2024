@@ -290,7 +290,7 @@ library(ggplot2)
    geom_bar(stat = "identity") +
    theme_minimal() +
    labs(
-     title = "Frecuencia de Codones en E. coli",
+     title = "Frecuencia de Codones",
      x = "Codón",
      y = "Frecuencia",
      fill = "Aminoácido"
