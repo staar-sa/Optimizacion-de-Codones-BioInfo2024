@@ -225,13 +225,13 @@ print (df_codones_aa)
   # Crear dataframe vacío para los resultados
 codones_mas_frecuentes <- data.frame()
   # Obtener los aminoácidos únicos
-aminoacidos <- unique(df_codones_aa$Aminoacido)
+aminoacidos <- unique(df_codones_aa[["Aminoacido"]])
   # Encontrar el codón más frecuente para cada aminoácido
 for(amino in aminoacidos) {
   # Seleccionar las filas de ese aminoácido
-    filas_aa <- df_codones_aa[df_codones_aa$Aminoacido == amino, ]
+  filas_aa <- df_codones_aa[df_codones_aa[["Aminoacido"]] == amino, ]
   # Seleccionar la fila con el valor más alto
-    fila_max <- filas_aa[which.max(filas_aa$frecuencia_codones), ]
+  fila_max <- filas_aa[which.max(filas_aa[["frecuencia_codones"]]), ]
   # Añadir al dataframe final
     codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
 }
