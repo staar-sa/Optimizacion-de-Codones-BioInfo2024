@@ -1,15 +1,15 @@
 ---
-title: "Ingenieria Genetica"
+title: "Ingeniería Genética"
 author: "Melissa Martinez, Estrella Segobia, Daniela Villanueva"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
-Analisis de secuencias y preferencias de codones
+Análisis de secuencias y preferencias de codones
 
 #### Librerías Requeridas
 
-Es necesario siempre cargar lo siguiente (en caso de que no lo tengan, previamente instalar)
+Es necesario siempre cargar los siguientes paquetes (en caso de que no lo tengan, previamente instalar)
 
 ```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 library(Biostrings)
@@ -25,13 +25,13 @@ Descargar las secuencias que serán analizadas en formato FASTA, y asignar dicha
 ecoli <- "01_raw_data/e.coli.fna"
 ```
 
-Leer la secuencia con la función readDNAStringSet que vive en Biostrings y asignarla a un objeto:
+Leer la secuencia con la función *readDNAStringSet* que la podemos encontrar en Biostrings y asignarla a un objeto:
 
 ```{r}
 ecoli_fasta <- readDNAStringSet(ecoli)
 ```
 
-**\*\*En caso de tener mas secuencias repetir los mismos pasos con aquellas de interes**
+**\*\*En caso de tener mas secuencias repetir los mismos pasos con aquellas de interés**
 
 Si queremos observalas:
 
@@ -39,7 +39,14 @@ Si queremos observalas:
 print(ecoli_fasta)
 ```
 
-#### Paso 2 - Crear función para determinar la presencia de codones
+#### Paso 2 - Crear función para determinar la presencia de codones 
+
+La función realiza lo siguiente: 
+1) Divide la secuencia de DNA en codones 
+2) Cuenta cuantas veces aparece cada codón
+3) Relaciona cada codón con su aminoácido
+4) Encuentra el codón más usado para cada aminoácido
+5) Observación de resultados
 
 ```{r}
 preferencia_de_codones <- function(secuencia) {
@@ -216,7 +223,7 @@ for(amino in aminoacidos) {
 
 ```
 
-#### Paso 3 - podemos usar la misma funcion para las siguientes secuencias
+#### Paso 3 - LLamar a la función para poder analizarla, con todo y resultados 
 
 ```{r}
 preferencia_de_codones(ecoli_fasta)
