@@ -203,13 +203,13 @@ codones_aminoacidos <- data.frame(
   ))  
 
  #2.3 Crear un vector de tamaño igual al número de codones, inicializado en 0
-frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
+frecuencia_codones <- numeric(length(codones_aminoacidos[["Codon"]]))
   # Asignar nombres a cada posición del vector, basados en los codones del data frame
-names(frecuencia_codones) <- codones_aminoacidos$Codon
+names(frecuencia_codones) <- codones_aminoacidos[["Codon"]]
 
  #2.4 Generar un ciclo for que recorre todos los codones generados anteriormente y calcular cuantas veces a parece cada uno 
 for (codon in codones) { #Que tome cada codón del vector codones uno por uno 
-  indice <- which(codones_aminoacidos$Codon == codon) #Aquí buscamos la posición del codón actual en el data frame codones_aminoacidos, usamos which para que devuelva la posición en la que el codon actual coincide 
+  indice <- which(codones_aminoacidos[["Codon"]] == codon) #Aquí buscamos la posición del codón actual en el data frame codones_aminoacidos, usamos which para que devuelva la posición en la que el codon actual coincide 
   if (length(indice) > 0) { #Verificamos que el codón actual exista, si el codón no existe which devuelve un vector vacío y el length(índice) sería 0
     frecuencia_codones[codon] <- frecuencia_codones[codon] + 1 #Si el codón actual existe incrementa en 1 la frecuencia del codón en el vector frecuencia_codones
   }
