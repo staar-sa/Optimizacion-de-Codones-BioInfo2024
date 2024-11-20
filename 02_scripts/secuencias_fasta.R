@@ -1,10 +1,16 @@
-###Script secuencias fasta
-
-
-##Cargar libraría siempre
-
+##0 - LIBRERIAS REQUERIDAS##
+#en caso de no tenerlas, es necesario instalarlas previamente antes de cargaras
+install.packages("Biostrings")
+install.packages("ggplot2")
+install.packages("plotly")
+#si ya las tienes, solo hay que cargarlas previamente
 library(Biostrings)
+library(ggplot2)
+library(plotly)
 
+
+
+##1 - DESCARGAR SECUENCIAS USADAS COMO REFERENCIA##
 ecoli <- "01_raw_data/e.coli.fna"
 ecoli_fasta <- readDNAStringSet(ecoli)
 
@@ -19,9 +25,17 @@ livi_fasta <- readDNAStringSet (lividians)
 
 putida <- "01_raw_data/p. putida.fna"
 putida_fasta <- readDNAStringSet (putida)
+#Si queremos observalas:
 
-# Crear un data frame con las secuencias
-secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se como hacerlo o no me acuerdo jejej 
+#Podemos visualizarlas individualmente solo imprimiendolas
+print(ecoli_fasta)
+print(bsubtilis_fasta)
+print(flouresce_fasta)
+print(livi_fasta)
+print(putida_fasta)
+
+#Aunque preferimos hacer un dataframe
+secuencias_df <- rbind(    
   data.frame(
     Organismo = "E. coli",
     ID = names(ecoli_fasta),
@@ -39,7 +53,6 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
     ID = names(flouresce_fasta),
     Secuencia = as.character(flouresce_fasta),
     Longitud = width(flouresce_fasta)
-    
   ),
   data.frame(
     Organismo = "S. lividians",
@@ -54,6 +67,10 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
     Longitud = width (putida_fasta)
   )
 )
+print(secuencias_df)
+
+
+##2 - 
 
 
 ##############################################################################
