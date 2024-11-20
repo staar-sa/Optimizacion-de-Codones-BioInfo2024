@@ -306,6 +306,18 @@ library(ggplot2)
    codones_mas_frecuentes = codones_mas_frecuentes,
    grafico = df_codones_aa_plot)
  )
+ 
+ # Guardar los codones más frecuentes como un archivo CSV
+ write.csv(codones_mas_frecuentes, "codones_mas_frecuentes.csv", row.names = FALSE)
+ 
+ # Guardar la tabla completa de codones y frecuencias como CSV
+ write.csv(df_codones_aa, "frecuencia_codones.csv", row.names = FALSE)
+ 
+ # Guardar la gráfica como imagen PNG
+ ggsave("grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
+ 
+ 
  }
 
-preferencia_de_codones(putida_fasta)
+preferencia_de_codones(ecoli_fasta)
+resultados <- preferencia_de_codones(ecoli_fasta)
