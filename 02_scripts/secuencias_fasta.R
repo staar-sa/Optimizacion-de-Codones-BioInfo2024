@@ -1,10 +1,16 @@
-###Script secuencias fasta
-
-
-##Cargar libraría siempre
-
+##0 - LIBRERIAS REQUERIDAS##
+#en caso de no tenerlas, es necesario instalarlas previamente antes de cargaras
+install.packages("Biostrings")
+install.packages("ggplot2")
+install.packages("plotly")
+#si ya las tienes, solo hay que cargarlas previamente
 library(Biostrings)
+library(ggplot2)
+library(plotly)
 
+
+
+##1 - DESCARGAR SECUENCIAS USADAS COMO REFERENCIA##
 ecoli <- "01_raw_data/e.coli.fna"
 ecoli_fasta <- readDNAStringSet(ecoli)
 
@@ -19,9 +25,17 @@ livi_fasta <- readDNAStringSet (lividians)
 
 putida <- "01_raw_data/p. putida.fna"
 putida_fasta <- readDNAStringSet (putida)
+#Si queremos observalas:
 
-# Crear un data frame con las secuencias
-secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se como hacerlo o no me acuerdo jejej 
+#Podemos visualizarlas individualmente solo imprimiendolas
+print(ecoli_fasta)
+print(bsubtilis_fasta)
+print(flouresce_fasta)
+print(livi_fasta)
+print(putida_fasta)
+
+#Aunque preferimos hacer un dataframe
+secuencias_df <- rbind(    
   data.frame(
     Organismo = "E. coli",
     ID = names(ecoli_fasta),
@@ -39,7 +53,6 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
     ID = names(flouresce_fasta),
     Secuencia = as.character(flouresce_fasta),
     Longitud = width(flouresce_fasta)
-    
   ),
   data.frame(
     Organismo = "S. lividians",
@@ -54,11 +67,20 @@ secuencias_df <- rbind(    ###Es para unir todos los data frames, porque no se c
     Longitud = width (putida_fasta)
   )
 )
+print(secuencias_df)
+
+
+
+##2 - DEFINIMOS UNA FUNCION PARA 
 
 
 ##############################################################################
 
+
 # Función que determina la preferencia de codones de 
+
+
+##Definir una función, para que esta reciba una secuencia de ADN como entrada
 
 preferencia_de_codones <- function(secuencia) {
 
@@ -72,7 +94,7 @@ numero_caracteres <- nchar( secuencia_en_caracteres)
   
 # Verificar si la longitud es múltiplo de 3
 if (numero_caracteres %% 3 != 0) {
-secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres 
+secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres
                                    - (numero_caracteres %% 3))
 }
   
@@ -221,12 +243,19 @@ frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
 # Asignar nombres a cada posición del vector, basados en los codones del data frame
 names(frecuencia_codones) <- codones_aminoacidos$Codon
 
-for (codon in codones) {
-  indice <- which(codones_aminoacidos$Codon == codon)
-  if (length(indice) > 0) { # Asegurarse de que hay un índice válido
-    frecuencia_codones[codon] <- frecuencia_codones[codon] + 1
+
+
+###Generar un ciclo for que recorre todos los codones generados anteriormente y calcular cuantas veces a parece cada uno 
+
+for (codon in codones) {      ##Un ciclo que tome cada codón del vector codones uno por uno 
+  indice <- which(codones_aminoacidos$Codon == codon)  ##Aquí buscamos la posición del codón actual en el data frame codones_aminoacidos, usamos which para que devuelva la posición en la que el codoón actual coincide 
+  if (length(indice) > 0) { # Aquí verificamos que el codón actual exista, si el codón no existe which devuelve un vector vacío y el length(índice) sería 0
+    frecuencia_codones[codon] <- frecuencia_codones[codon] + 1  ##Si el codón actual existe incrementa en 1 la frecuencia del codón en el vector frecuencia_codones
   }
 }
+
+
+
 
 
 #volver las frecuencias a un dataframe 
@@ -268,6 +297,10 @@ library(ggplot2)
    ) + 
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
  df_codones_aa_plot
+ 
+ library (plotly)
+ df_codones_aa_plot_interactivo <- ggplotly (df_codones_aa_plot)
+ print (df_codones_aa_plot_interactivo)
  
  print(list(
    codones_mas_frecuentes = codones_mas_frecuentes,
