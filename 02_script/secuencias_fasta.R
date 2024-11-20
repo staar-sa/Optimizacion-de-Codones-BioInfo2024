@@ -23,7 +23,7 @@ library(plotly)
 
 # 1.1 Asignar a un objeto la secuencia fasta 
 
-ecoli <- "01_raw_data/e.coli.fna"
+ecoli <- "04_rmarkdown/01_raw_data/e.coli.fna"
 
 # 1.2 Leer la secuencia con la función readDNAStringSet que vive en Biostrings 
 # y asignar a un objeto
@@ -33,16 +33,16 @@ ecoli_fasta <- readDNAStringSet(ecoli)
 
 # Repetir los pasos 1.1 y 1.2 con las secuencias que se deseen analizar
 
-bsubtilis <- "01_raw_data/b. subtilis.fna"
+bsubtilis <- "04_rmarkdown/01_raw_data/b. subtilis.fna"
 bsubtilis_fasta <- readDNAStringSet (bsubtilis)
 
-pflour <- "01_raw_data/p. fluorescens.fna"
+pflour <- "04_rmarkdown/01_raw_data/p. fluorescens.fna"
 flouresce_fasta <- readDNAStringSet (pflour)
 
-lividians <- "01_raw_data/s. lividians.fna"
+lividians <- "04_rmarkdown/01_raw_data/s. lividians.fna"
 livi_fasta <- readDNAStringSet (lividians)
 
-putida <- "01_raw_data/p. putida.fna"
+putida <- "04_rmarkdown/01_raw_data/p. putida.fna"
 putida_fasta <- readDNAStringSet (putida)
 
 # Si queremos observalas:
