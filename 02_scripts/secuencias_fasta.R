@@ -71,7 +71,7 @@ print(secuencias_df)
 
 
 
-##2 - DEFINIMOS UNA FUNCION PARA 
+##2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES
 
 
 ##############################################################################
