@@ -226,7 +226,7 @@ names(frecuencia_codones) <- codones_aminoacidos$Codon
 
 for (codon in codones) {      ##Un ciclo que tome cada codón del vector codones uno por uno 
   indice <- which(codones_aminoacidos$Codon == codon)  ##Aquí buscamos la posición del codón actual en el data frame codones_aminoacidos, usamos which para que devuelva la posición en la que el codoón actual coincide 
-  if (length(indice) > 0) { # Aquí verificamos que el codón actual exista, si el codoón no existe which devuelve un vector vacío y el length(índice) sería 0
+  if (length(indice) > 0) { # Aquí verificamos que el codón actual exista, si el codón no existe which devuelve un vector vacío y el length(índice) sería 0
     frecuencia_codones[codon] <- frecuencia_codones[codon] + 1  ##Si el codón actual existe incrementa en 1 la frecuencia del codón en el vector frecuencia_codones
   }
 }
