@@ -19,7 +19,7 @@ library(plotly)
 
 
 
-##1 - DESCARGAR SECUENCIAS, ESTAS SERAN USADAS COMO REFERENCIA##
+## 1 - DESCARGAR SECUENCIAS, ESTAS SERAN USADAS COMO REFERENCIA##
 
 # 1.1 Asignar a un objeto la secuencia fasta 
 
@@ -92,27 +92,21 @@ print(secuencias_df)
 
 
 
-##2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES##
-
-# Definir una función, para que esta reciba una secuencia de ADN como entrada,
-# es decir, la que previamente leímos con la función readDNA... y asignamos a un objeto
+## 2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES##
 
 preferencia_de_codones <- function(secuencia) {
-
-#2.1 Dividir una secuencia en codones
   
+#2.1 Dividir una secuencia en codones
   # Convertir DNAString a caracteres
 secuencia_en_caracteres <- as.character(secuencia)
-
   # Obtener la longitud de la secuencia
 numero_caracteres <- nchar( secuencia_en_caracteres)
-
-  #Verificar si la longitud es múltiplo de 3
+  # Verificar si la longitud es múltiplo de 3
 if (numero_caracteres %% 3 != 0) {
 secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres
                                    - (numero_caracteres %% 3))
 }
-  #Dividir en codones
+  # Dividir en codones
 codones <- substring( secuencia_en_caracteres, 
                        seq(1, nchar( secuencia_en_caracteres)-2, by=3),
                        seq(3, nchar( secuencia_en_caracteres), by=3))
@@ -210,7 +204,7 @@ codones_aminoacidos <- data.frame(
 
  #2.3 Crear un vector de tamaño igual al número de codones, inicializado en 0
 frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
-  #Asignar nombres a cada posición del vector, basados en los codones del data frame
+  # Asignar nombres a cada posición del vector, basados en los codones del data frame
 names(frecuencia_codones) <- codones_aminoacidos$Codon
 
  #2.4 Generar un ciclo for que recorre todos los codones generados anteriormente y calcular cuantas veces a parece cada uno 
@@ -220,25 +214,25 @@ for (codon in codones) { #Que tome cada codón del vector codones uno por uno
     frecuencia_codones[codon] <- frecuencia_codones[codon] + 1 #Si el codón actual existe incrementa en 1 la frecuencia del codón en el vector frecuencia_codones
   }
 }
-  #Convertir las frecuencias obtenidas a un data frame 
+  # Convertir las frecuencias obtenidas a un data frame 
 df_frecuencia_codones <- as.data.frame(frecuencia_codones)
 print (df_frecuencia_codones)
-  #Combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
+  # Combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
 df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
 print (df_codones_aa)
 
  #2.5 Para visualizar los aminoacidos mas frecuentes
-  #Crear dataframe vacío para los resultados
+  # Crear dataframe vacío para los resultados
 codones_mas_frecuentes <- data.frame()
-  #Obtener los aminoácidos únicos
+  # Obtener los aminoácidos únicos
 aminoacidos <- unique(df_codones_aa$Aminoacido)
- #Encontrar el codón más frecuente para cada aminoácido
+  # Encontrar el codón más frecuente para cada aminoácido
 for(amino in aminoacidos) {
-    # Seleccionar las filas de ese aminoácido
+  # Seleccionar las filas de ese aminoácido
     filas_aa <- df_codones_aa[df_codones_aa$Aminoacido == amino, ]
-    # Seleccionar la fila con el valor más alto
+  # Seleccionar la fila con el valor más alto
     fila_max <- filas_aa[which.max(filas_aa$frecuencia_codones), ]
-    # Añadir al dataframe final
+  # Añadir al dataframe final
     codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
 }
 print(codones_mas_frecuentes)
@@ -255,7 +249,7 @@ print(codones_mas_frecuentes)
    ) + 
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
  print (df_codones_aa_plot)
-  #Como extra, si queremos que la grafica sea interactiva
+  # Como extra, si queremos que la grafica sea interactiva
  df_codones_aa_plot_interactivo <- ggplotly (df_codones_aa_plot)
  print (df_codones_aa_plot_interactivo)
 
@@ -264,30 +258,30 @@ print(codones_mas_frecuentes)
    codones_mas_frecuentes = codones_mas_frecuentes,
    grafico = df_codones_aa_plot)
  )
-   #Guardar los codones más frecuentes como un archivo CSV
+   # Guardar los codones más frecuentes como un archivo CSV
  write.csv(codones_mas_frecuentes, "codones_mas_frecuentes.csv", row.names = FALSE)
-   #Guardar la tabla completa de codones y frecuencias como CSV
+   # Guardar la tabla completa de codones y frecuencias como CSV
  write.csv(df_codones_aa, "frecuencia_codones.csv", row.names = FALSE)
-   #Guardar la gráfica como imagen PNG
+   # Guardar la gráfica como imagen PNG
  ggsave("grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
  }
 
 
 
-##PODEMOS USAR EL MISMO CODIGO PARA LAS DEMAS SECUENCIAS, POR EJEMPLO:
- #E.coli
+## 3 - PODEMOS USAR EL MISMO CODIGO PARA LAS DEMAS SECUENCIAS, POR EJEMPLO:
+ # E.coli
 preferencia_de_codones(ecoli_fasta)
 resultados <- preferencia_de_codones(ecoli_fasta)
- #Bacillus subtilis
+ # Bacillus subtilis
 preferencia_de_codones(bsubtilis_fasta)
 resultados <- preferencia_de_codones(bsubtilis_fasta)
- #Pseudomonas fluorscens
+ # Pseudomonas fluorscens
 preferencia_de_codones(flouresce_fasta)
 resultados <- preferencia_de_codones(flouresce_fasta)
  # Streptomyces lividans
 preferencia_de_codones(livi_fasta)
 resultados <- preferencia_de_codones(livi_fasta)
- #Pseudomonas putida
+ # Pseudomonas putida
 preferencia_de_codones(putida_fasta)
 resultados <- preferencia_de_codones(putida_fasta)
 
