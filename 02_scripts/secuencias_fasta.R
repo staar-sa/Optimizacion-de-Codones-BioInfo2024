@@ -71,7 +71,7 @@ numero_caracteres <- nchar( secuencia_en_caracteres)
   
 # Verificar si la longitud es múltiplo de 3
 if (numero_caracteres %% 3 != 0) {
-secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres 
+secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres
                                    - (numero_caracteres %% 3))
 }
   
@@ -220,12 +220,19 @@ frecuencia_codones <- numeric(length(codones_aminoacidos$Codon))
 # Asignar nombres a cada posición del vector, basados en los codones del data frame
 names(frecuencia_codones) <- codones_aminoacidos$Codon
 
-for (codon in codones) {
-  indice <- which(codones_aminoacidos$Codon == codon)
-  if (length(indice) > 0) { # Asegurarse de que hay un índice válido
-    frecuencia_codones[codon] <- frecuencia_codones[codon] + 1
+
+
+###Generar un ciclo for que recorre todos los codones generados anteriormente y calcular cuantas veces a parece cada uno 
+
+for (codon in codones) {      ##Un ciclo que tome cada codón del vector codones uno por uno 
+  indice <- which(codones_aminoacidos$Codon == codon)  ##Aquí buscamos la posición del codón actual en el data frame codones_aminoacidos, usamos which para que devuelva la posición en la que el codoón actual coincide 
+  if (length(indice) > 0) { # Aquí verificamos que el codón actual exista, si el codón no existe which devuelve un vector vacío y el length(índice) sería 0
+    frecuencia_codones[codon] <- frecuencia_codones[codon] + 1  ##Si el codón actual existe incrementa en 1 la frecuencia del codón en el vector frecuencia_codones
   }
 }
+
+
+
 
 
 #volver las frecuencias a un dataframe 
