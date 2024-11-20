@@ -259,11 +259,11 @@ for(amino in aminoacidos) {
    grafico = df_codones_aa_plot)
  )
    # Guardar los codones más frecuentes como un archivo CSV
- write.csv(codones_mas_frecuentes, "codones_mas_frecuentes.csv", row.names = FALSE)
+ write.csv(codones_mas_frecuentes, "03_resultados/codones_mas_frecuentes.csv", row.names = FALSE)
    # Guardar la tabla completa de codones y frecuencias como CSV
- write.csv(df_codones_aa, "frecuencia_codones.csv", row.names = FALSE)
+ write.csv(df_codones_aa, "03_resultados/frecuencia_codones.csv", row.names = FALSE)
    # Guardar la gráfica como imagen PNG
- ggsave("grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
+ ggsave("03_resultados/grafico_codones.png", plot = df_codones_aa_plot, width = 10, height = 7, dpi = 300)
  }
 
 
@@ -271,25 +271,21 @@ for(amino in aminoacidos) {
 ## 3 - PODEMOS USAR EL MISMO CODIGO PARA LAS DEMAS SECUENCIAS, POR EJEMPLO:
  # E.coli
 preferencia_de_codones(ecoli_fasta)
-resultados <- preferencia_de_codones(ecoli_fasta)
-resultados
+
 
  # Bacillus subtilis
 preferencia_de_codones(bsubtilis_fasta)
-resultados <- preferencia_de_codones(bsubtilis_fasta)
-resultados
+
 
  # Pseudomonas fluorscens
 preferencia_de_codones(flouresce_fasta)
-resultados <- preferencia_de_codones(flouresce_fasta)
-resultados
+
 
  # Streptomyces lividans
 preferencia_de_codones(livi_fasta)
-resultados <- preferencia_de_codones(livi_fasta)
-resultados
+
 
  # Pseudomonas putida
 preferencia_de_codones(putida_fasta)
-resultados <- preferencia_de_codones(putida_fasta)
-resultados
+
+
