@@ -272,16 +272,24 @@ print(codones_mas_frecuentes)
  # E.coli
 preferencia_de_codones(ecoli_fasta)
 resultados <- preferencia_de_codones(ecoli_fasta)
+resultados
+
  # Bacillus subtilis
 preferencia_de_codones(bsubtilis_fasta)
 resultados <- preferencia_de_codones(bsubtilis_fasta)
+resultados
+
  # Pseudomonas fluorscens
 preferencia_de_codones(flouresce_fasta)
 resultados <- preferencia_de_codones(flouresce_fasta)
+resultados
+
  # Streptomyces lividans
 preferencia_de_codones(livi_fasta)
 resultados <- preferencia_de_codones(livi_fasta)
+resultados
+
  # Pseudomonas putida
 preferencia_de_codones(putida_fasta)
 resultados <- preferencia_de_codones(putida_fasta)
-
+resultados
