@@ -1,18 +1,37 @@
 ##0 - LIBRERIAS REQUERIDAS##
-#en caso de no tenerlas, es necesario instalarlas previamente antes de cargaras
-install.packages("Biostrings")
+
+# En caso de no tenerlas, es necesario instalarlas previamente antes de cargarlas
+
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install("Biostrings")
+
 install.packages("ggplot2")
+
 install.packages("plotly")
-#si ya las tienes, solo hay que cargarlas previamente
+
+# Si ya las tienes, solo hay que cargarlas previamente
+
 library(Biostrings)
 library(ggplot2)
 library(plotly)
 
 
 
-##1 - DESCARGAR SECUENCIAS USADAS COMO REFERENCIA##
+##1 - DESCARGAR SECUENCIAS, ESTAS SERAN USADAS COMO REFERENCIA##
+
+# 1.1 Asignar a un objeto la secuencia fasta 
+
 ecoli <- "01_raw_data/e.coli.fna"
+
+# 1.2 Leer la secuencia con la función readDNAStringSet que vive en Biostrings 
+# y asignar a un objeto
+
 ecoli_fasta <- readDNAStringSet(ecoli)
+
+
+# Repetir los pasos 1.1 y 1.2 con las secuencias que se deseen analizar
 
 bsubtilis <- "01_raw_data/b. subtilis.fna"
 bsubtilis_fasta <- readDNAStringSet (bsubtilis)
@@ -25,16 +44,18 @@ livi_fasta <- readDNAStringSet (lividians)
 
 putida <- "01_raw_data/p. putida.fna"
 putida_fasta <- readDNAStringSet (putida)
-#Si queremos observalas:
 
-#Podemos visualizarlas individualmente solo imprimiendolas
+# Si queremos observalas:
+# Podemos visualizarlas individualmente solo imprimiendolas
+
 print(ecoli_fasta)
 print(bsubtilis_fasta)
 print(flouresce_fasta)
 print(livi_fasta)
 print(putida_fasta)
 
-#Aunque preferimos hacer un dataframe
+# Preferimos hacer un dataframe para organizar las secuencias a usar en el proyecto
+
 secuencias_df <- rbind(    
   data.frame(
     Organismo = "E. coli",
@@ -71,16 +92,21 @@ print(secuencias_df)
 
 
 
-##2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES
-  #Definir una función, para que esta reciba una secuencia de ADN como entrada
+##2 - DEFINIMOS UNA FUNCION PARA DETERMINAR LA PREFERENCIA DE CODONES##
+
+# Definir una función, para que esta reciba una secuencia de ADN como entrada,
+# es decir, la que previamente leímos con la función readDNA... y asignamos a un objeto
+
 preferencia_de_codones <- function(secuencia) {
 
- #2.1 Dividir una secuencia en codones
+#2.1 Dividir una secuencia en codones
   
   # Convertir DNAString a caracteres
 secuencia_en_caracteres <- as.character(secuencia)
+
   # Obtener la longitud de la secuencia
 numero_caracteres <- nchar( secuencia_en_caracteres)
+
   #Verificar si la longitud es múltiplo de 3
 if (numero_caracteres %% 3 != 0) {
 secuencia_en_caracteres <- substr( secuencia_en_caracteres, 1, numero_caracteres
