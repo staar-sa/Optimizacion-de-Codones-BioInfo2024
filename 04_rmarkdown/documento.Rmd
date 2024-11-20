@@ -39,7 +39,7 @@ Si queremos observalas:
 print(ecoli_fasta)
 ```
 
-#### Paso 2 - Crear funcion para determinar la presencia de codones
+#### Paso 2 - Crear función para determinar la presencia de codones
 
 ```{r message=TRUE, paged.print=TRUE}
 preferencia_de_codones <- function(secuencia) {
@@ -215,7 +215,7 @@ print(codones_mas_frecuentes)
  }
 ```
 
-#### Paso 3 - Usar la misma funcion para las secuencias de interes
+#### Paso 3 - Usar la misma función para las secuencias de interes
 
 ```{r}
 preferencia_de_codones(ecoli_fasta)
