@@ -70,7 +70,8 @@ secuencias_df <- rbind(
 print(secuencias_df)
 
 
-##2 - 
+
+##2 - DEFINIMOS UNA FUNCION PARA 
 
 
 ##############################################################################
