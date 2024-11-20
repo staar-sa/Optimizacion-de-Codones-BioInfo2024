@@ -4,26 +4,31 @@ author: "Melissa Martinez, Estrella Segobia, Daniela Villanueva"
 date: "`r Sys.Date()`"
 output: html_document
 ---
+
 # Análisis de Secuencias y Preferencias de Codones
 
 ## 0 - Librerías Requeridas
 
 En caso de no tenerlas, es necesario instalarlas previamente antes de cargarlas:
 
-```{r}
-if (!require("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-
-BiocManager::install("Biostrings")
-install.packages("ggplot2")
-install.packages("plotly")
-```
-
 En caso que si, solo hay que cargarlas
-```{r}
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 library(Biostrings)
 library(ggplot2)
 library(plotly)
 ```
 
+Primer paso
+
+Descargar las secuencias que serán analizadas en formato FASTA, y asignar dicha secuencia a un objeto:
+
+```{r}
+ecoli <- "01_raw_data/e.coli.fna"
+```
+
+Leer la secuencia con la función readDNAStringSet que vive en Biostrings y asignarla a un objeto:
+```{r}
+ecoli_fasta <- readDNAStringSet(ecoli)
+```
 
