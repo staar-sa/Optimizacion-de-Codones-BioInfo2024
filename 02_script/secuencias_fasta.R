@@ -216,10 +216,10 @@ for (codon in codones) { #Que tome cada codón del vector codones uno por uno
 }
   # Convertir las frecuencias obtenidas a un data frame 
 df_frecuencia_codones <- as.data.frame(frecuencia_codones)
-print (df_frecuencia_codones)
+
   # Combinar ambos data frame, el de aminoacidos y de frecuencias por columnas
 df_codones_aa <- cbind(codones_aminoacidos, df_frecuencia_codones)
-print (df_codones_aa)
+
 
  #2.5 Para visualizar los aminoacidos mas frecuentes
   # Crear dataframe vacío para los resultados
@@ -235,7 +235,7 @@ for(amino in aminoacidos) {
   # Añadir al dataframe final
     codones_mas_frecuentes <- rbind(codones_mas_frecuentes, fila_max)
 }
-print(codones_mas_frecuentes)
+
 
  #2.6 Graficar los resultados
  df_codones_aa_plot <- ggplot(df_codones_aa, aes(x = Codon, y = frecuencia_codones, fill = Aminoacido)) +
@@ -248,7 +248,7 @@ print(codones_mas_frecuentes)
      fill = "Aminoácido"
    ) + 
    theme(axis.text.x = element_text(angle = 90, hjust = 1))
- print (df_codones_aa_plot)
+ 
   # Como extra, si queremos que la grafica sea interactiva
  df_codones_aa_plot_interactivo <- ggplotly (df_codones_aa_plot)
  print (df_codones_aa_plot_interactivo)
